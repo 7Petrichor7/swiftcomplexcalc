@@ -20,10 +20,10 @@ class Calculator {
     }
     
     func add(lhs: [String : Int], rhs: [String : Int]) -> [String: Int]{
-            var result = [String: Int]()
-            result["x"] = lhs["x"]! + rhs["x"]!
-            result["y"] = lhs["y"]! + rhs["y"]!
-            return result
+        var output = [String: Int]()
+        output["x"] = lhs["x"]! + rhs["x"]!
+        output["y"] = lhs["y"]! + rhs["y"]!
+        return output
     }
        
     func subtract(lhs: Int, rhs: Int) -> Int {
