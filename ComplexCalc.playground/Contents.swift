@@ -12,11 +12,18 @@ class Calculator {
     }
     
     func add(_ input : [Int]) -> Int {
-        var add = 0
+        var output = 0
         for i in 0...(input.count - 1) {
-            add = add + input[i]
+            output = output + input[i]
         }
-        return add
+        return output
+    }
+    
+    func add(lhs: [String : Int], rhs: [String : Int]) -> [String: Int]{
+            var result = [String: Int]()
+            result["x"] = lhs["x"]! + rhs["x"]!
+            result["y"] = lhs["y"]! + rhs["y"]!
+            return result
     }
        
     func subtract(lhs: Int, rhs: Int) -> Int {
@@ -24,7 +31,14 @@ class Calculator {
     }
     
     func subtract(lhs: (Int, Int), rhs: (Int, Int)) -> (Int, Int){
-        return ((lhs.0 + rhs.0), (lhs.1 + rhs.1))
+        return ((lhs.0 - rhs.0), (lhs.1 - rhs.1))
+    }
+    
+    func subtract(lhs: [String : Int], rhs: [String : Int]) -> [String: Int]{
+        var result = [String: Int]()
+        result["x"] = Int(lhs["x"]!) - Int(rhs["x"]!)
+        result["y"] = Int(lhs["y"]!) - Int(rhs["y"]!)
+        return result
     }
        
     func multiply(lhs: Int, rhs: Int) -> Int {
@@ -80,6 +94,9 @@ class Calculator {
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
 
 // ====> Add your own tests here if you wish <====
+let a = calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) })
+print(a)
+
 
 // ====> Do not modify code in this section <====
 calc.add(lhs: 2, rhs: 2) == 4
@@ -116,7 +133,8 @@ calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
 calc.add(lhs: p4, rhs: p4) == (0, 0)
 calc.add(lhs: p3, rhs: p4) == (-4, 4)
 
-//let pd1 = ["x": 5, "y": 5]
-//let pd2 = ["x": -4, "y": 4]
-//calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
-//calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
+let pd1 = ["x": 5, "y": 5]
+let pd2 = ["x": -4, "y": 4]
+calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
+calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
+
